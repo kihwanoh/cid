@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+   <metadata>
+       <id>Cid</id>
+       <version>$version$</version>
+       <title>Xamarin Android USB peripherals</title>
+       <authors>Syncromatics Engineering</authors>
+       <owners>Syncromatics Engineering</owners>
+       <licenseUrl>https://github.com/syncromatics/cid/blob/master/LICENSE.md</licenseUrl>
+       <projectUrl>https://github.com/syncromatics/cid</projectUrl>
+       <iconUrl>https://en.gravatar.com/userimage/100017782/89bdc96d68ad4b23998e3cdabdeb6e13.png?size=32</iconUrl>
+       <requireLicenseAcceptance>false</requireLicenseAcceptance>
+       <description>
+         An assortment of USB peripheral drivers for Xamarin Android
+       </description>
+       <summary>
+         Xamarin USB drivers.
+       </summary>
+       <tags>xamarin, android, usb, serial</tags>
+   </metadata>
+   <files>
+     <file src="./bin/$configuration$/Cid.dll" target="lib/monoandroid403" />
+     <file src="./bin/$configuration$/Cid.pdb" target="lib/monoandroid403" />
+   </files>
+</package>

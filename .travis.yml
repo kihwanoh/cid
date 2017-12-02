@@ -1,0 +1,18 @@
+language: csharp
+
+os: linux
+dist: trusty
+sudo: required
+
+services:
+  - docker
+
+branches:
+  only: 
+    - master
+
+install:
+  - docker pull syncromatics/build-box:release-5.4.1-android-support
+
+script:
+  - docker build . --build-arg is_pull_request=$TRAVIS_PULL_REQUEST --build-arg travis_tag=$TRAVIS_TAG --build-arg api_key=$API_KEY

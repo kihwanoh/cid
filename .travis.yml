@@ -1,0 +1,23 @@
+language: csharp
+
+os: linux
+dist: trusty
+sudo: required
+
+services:
+  - docker
+
+install:
+  - git config --get-all remote.origin.fetch;
+  - git config --unset-all remote.origin.fetch;
+  - git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/*;
+  - git config --get-all remote.origin.fetch;
+  - git fetch --all;
+  - docker pull syncromatics/build-box:release-5.4.1-android-support
+  - sudo nuget update -self
+
+script:
+  - docker run -v $(pwd):/project_build -e TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST -e TRAVIS_TAG=$TRAVIS_TAG syncromatics/build-box:release-5.4.1-android-support /project_build/build.sh
+  - if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ "${TRAVIS_TAG}" != "" ]; then
+      sudo nuget push ./*.nupkg -ApiKey $API_KEY -Source https://api.nuget.org/v3/index.json;
+    fi
